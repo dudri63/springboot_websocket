@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class WebsocketHandler extends TextWebSocketHandler {
 
-    private static List<WebSocketSession> sessionList = new ArrayList<>();
+    private static final List<WebSocketSession> sessionList = new ArrayList<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -21,7 +21,6 @@ public class WebsocketHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        String payload = message.getPayload();
 
         for (WebSocketSession webSocketSession : sessionList) {
             webSocketSession.sendMessage(message);
